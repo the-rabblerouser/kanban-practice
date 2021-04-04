@@ -7,7 +7,7 @@ import Column from '../components/Column';
 import initialData from '../utils/initialData';
 
 export default function Home() {
-	const [data, SetData] = useState(initialData);
+	const [data, setData] = useState(initialData);
 
 	const { columns, tasks } = data;
 	return (
