@@ -1,17 +1,14 @@
 .container {
-	min-height: 100vh;
-	padding: 0 0.5rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	border: 1px solid lightgrey;
+	border-radius: 2px;
+	padding: 8px;
+	margin: 8px;
 }
 
-.main {
-	padding: 5rem 0;
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.title {
+	padding: 8px;
+}
+
+.taskList {
+	padding: 8px;
 }
