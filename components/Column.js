@@ -32,6 +32,9 @@ const Column = ({ column: { id, title }, tasks }) => {
 					border-radius: 2px;
 					padding: 8px;
 					margin: 8px;
+					width: 22rem;
+					display: flex;
+					flex-direction: column;
 				}
 				.title {
 					padding: 8px;
@@ -39,6 +42,8 @@ const Column = ({ column: { id, title }, tasks }) => {
 
 				.taskList {
 					padding: 8px;
+					flex-grow: 1;
+					min-height: 100px;
 				}
 
 				.backgroundT {
