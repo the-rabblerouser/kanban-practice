@@ -28,10 +28,10 @@ const Task = ({ tasks: { id, content }, index, isDragging }) => {
 					margin: 8px;
 				}
 
-				.bacgroundR {
+				.backgroundR {
 					background: red;
 				}
-				.bacgroundW {
+				.backgroundW {
 					background: white;
 				}
 				}
