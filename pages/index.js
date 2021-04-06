@@ -2,7 +2,7 @@ import next from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
 
-import { DragDropContext, resetServerContext } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import Column from '../components/Column';
 import initialData from '../utils/initialData';
@@ -80,7 +80,7 @@ export default function Home() {
 
 		setData(newState);
 	};
-	console.log(data);
+
 	return (
 		<>
 			<Head>
