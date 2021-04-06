@@ -24,31 +24,63 @@ export default function Home() {
 		) {
 			return;
 		}
-		const column = data.columns[source.droppableId];
 
-		const newTaskIds = [...column.taskIds];
+		const start = data.columns[source.droppableId];
+		const finish = data.columns[destination.droppableId];
 
-		// removes item from array
-		newTaskIds.splice(source.index, 1);
-		// starts from destination.index, removes nothing, and adds item to new location
-		newTaskIds.splice(destination.index, 0, draggableId);
+		if (start === finish) {
+			const newTaskIds = [...start.taskIds];
 
-		const newColumn = {
-			...column,
-			taskIds: newTaskIds,
+			// removes item from array
+			newTaskIds.splice(source.index, 1);
+			// starts from destination.index, removes nothing, and adds item to new location
+			newTaskIds.splice(destination.index, 0, draggableId);
+
+			const newColumn = {
+				...start,
+				taskIds: newTaskIds,
+			};
+
+			const newState = {
+				...data,
+				columns: {
+					...columns,
+					[newColumn.id]: newColumn,
+				},
+			};
+
+			setData(newState);
+		}
+
+		const startTaskIds = [...start.taskIds];
+
+		startTaskIds.splice(source.index, 1);
+
+		const newStart = {
+			...start,
+			taskIds: startTaskIds,
+		};
+
+		const finishTaskIds = [...finish.taskIds];
+		finishTaskIds.splice(destination.index, 0, draggableId);
+
+		const newFinish = {
+			...finish,
+			taskIds: finishTaskIds,
 		};
 
 		const newState = {
 			...data,
 			columns: {
 				...columns,
-				[newColumn.id]: newColumn,
+				[newStart.id]: newStart,
+				[newFinish.id]: newFinish,
 			},
 		};
 
 		setData(newState);
 	};
-
+	console.log(data);
 	return (
 		<>
 			<Head>
@@ -75,20 +107,3 @@ export default function Home() {
 		</>
 	);
 }
-
-/* 
-The resetServerContext function should be used when server side rendering (SSR). 
-It ensures context state does not persist across multiple renders on the server which would 
-result in client/server markup mismatches after multiple requests are rendered on the server.
-
-Use it before calling the server side render method
-
- fixes the error:
- Warning: Prop `data-rbd-draggable-context-id` did not match. Server: "1" Client: "0" div
-*/
-
-// export const getServerSideProps = async ({ query }) => {
-// 	resetServerContext(); // <-- CALL RESET SERVER SIDE
-
-// 	return { props: { data: [] } };
-// };
