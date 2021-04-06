@@ -29,7 +29,7 @@ const Task = ({ tasks: { id, content }, index, isDragging }) => {
 				}
 
 				.backgroundR {
-					background: red;
+					background: lightgreen;
 				}
 				.backgroundW {
 					background: white;
