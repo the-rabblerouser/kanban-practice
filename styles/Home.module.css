@@ -5,6 +5,14 @@
 	margin: 8px;
 }
 
+.backgroundRed {
+	background: red;
+}
+
+.backgroundWhite {
+	background: white;
+}
+
 .title {
 	padding: 8px;
 }

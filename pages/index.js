@@ -79,8 +79,8 @@ Use it before calling the server side render method
  Warning: Prop `data-rbd-draggable-context-id` did not match. Server: "1" Client: "0" div
 */
 
-export const getServerSideProps = async ({ query }) => {
-	resetServerContext(); // <-- CALL RESET SERVER SIDE
+// export const getServerSideProps = async ({ query }) => {
+// 	resetServerContext(); // <-- CALL RESET SERVER SIDE
 
-	return { props: { data: [] } };
-};
+// 	return { props: { data: [] } };
+// };
