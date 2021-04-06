@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 // import styles from '../styles/Home.module.css';
 
-const Task = ({ tasks: { id, content }, index, isDragging }) => {
+const Task = ({ tasks: { id, content }, index }) => {
 	return (
 		<>
 			<Draggable draggableId={id} index={index}>
