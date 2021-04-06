@@ -55,15 +55,23 @@ export default function Home() {
 				<title>Kanban Clone</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<div className="container">
+				<DragDropContext onDragEnd={onDragEnd}>
+					{columnOrder.map((columnId) => {
+						const column = columns[columnId];
+						const tasksList = column.taskIds.map((taskId) => tasks[taskId]);
 
-			<DragDropContext onDragEnd={onDragEnd}>
-				{columnOrder.map((columnId) => {
-					const column = columns[columnId];
-					const tasksList = column.taskIds.map((taskId) => tasks[taskId]);
-
-					return <Column key={column.id} column={column} tasks={tasksList} />;
-				})}
-			</DragDropContext>
+						return <Column key={column.id} column={column} tasks={tasksList} />;
+					})}
+				</DragDropContext>
+			</div>
+			<style jsx>{`
+				.container {
+					width: 100vw;
+					display: flex;
+					justify-content: center;
+				}
+			`}</style>
 		</>
 	);
 }

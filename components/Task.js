@@ -31,9 +31,9 @@ const Task = ({ tasks: { id, content }, index }) => {
 				.backgroundR {
 					background: lightgreen;
 				}
+
 				.backgroundW {
 					background: white;
-				}
 				}
 			`}</style>
 		</>
