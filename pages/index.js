@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import Column from '../components/Column';
 import initialData from '../utils/initialData';
@@ -11,7 +11,7 @@ export default function Home() {
 	const { columns, tasks, columnOrder } = data;
 
 	const onDragEnd = (result) => {
-		const { destination, source, draggableId } = result;
+		const { destination, source, draggableId, type } = result;
 
 		if (!destination) {
 			return;
@@ -20,6 +20,20 @@ export default function Home() {
 			destination.droppableId === source.droppableId &&
 			destination.index === source.index
 		) {
+			return;
+		}
+
+		if (type === 'column') {
+			const newColumnOrder = [...columnOrder];
+			newColumnOrder.splice(source.index, 1);
+			newColumnOrder.splice(destination.index, 0, draggableId);
+
+			const newState = {
+				...data,
+				columnOrder: newColumnOrder,
+			};
+
+			setData(newState);
 			return;
 		}
 
@@ -83,12 +97,36 @@ export default function Home() {
 		<>
 			<div className="container">
 				<DragDropContext onDragEnd={onDragEnd}>
-					{columnOrder.map((columnId) => {
-						const column = columns[columnId];
-						const tasksList = column.taskIds.map((taskId) => tasks[taskId]);
+					<Droppable
+						droppableId="all-columns"
+						direction="horizontal"
+						type="column">
+						{(provided) => {
+							return (
+								<div
+									{...provided.droppableProps}
+									ref={provided.innerRef}
+									className="container">
+									{columnOrder.map((columnId, index) => {
+										const column = columns[columnId];
+										const tasksList = column.taskIds.map(
+											(taskId) => tasks[taskId]
+										);
 
-						return <Column key={column.id} column={column} tasks={tasksList} />;
-					})}
+										return (
+											<Column
+												key={column.id}
+												column={column}
+												tasks={tasksList}
+												index={index}
+											/>
+										);
+									})}
+									{provided.placeholder}
+								</div>
+							);
+						}}
+					</Droppable>
 				</DragDropContext>
 			</div>
 			<style jsx>{`
