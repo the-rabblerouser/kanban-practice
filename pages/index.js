@@ -62,6 +62,7 @@ export default function Home() {
 			};
 
 			setData(newState);
+			return;
 		}
 
 		const startTaskIds = [...start.taskIds];
@@ -91,6 +92,7 @@ export default function Home() {
 		};
 
 		setData(newState);
+		return;
 	};
 
 	return (
