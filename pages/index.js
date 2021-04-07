@@ -1,5 +1,3 @@
-import next from 'next';
-import Head from 'next/head';
 import { useState } from 'react';
 
 import { DragDropContext } from 'react-beautiful-dnd';
@@ -83,10 +81,6 @@ export default function Home() {
 
 	return (
 		<>
-			<Head>
-				<title>Kanban Clone</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
 			<div className="container">
 				<DragDropContext onDragEnd={onDragEnd}>
 					{columnOrder.map((columnId) => {
